@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript calculator</title>
+    <link rel="stylesheet" href="claculator.css">
+</head>
+<body>
+    <!-- this is html container where i am going to store all things which i  want -->
+    <div class="container">
+        <!-- here i took div tag and i took here heddings of age calculator -->
+        <div class="base">
+            <h2>Age Calculator</h2>
+        </div>
+         <!-- we will input user name-->
+        <div class="block">
+            <p class="title">Name</p>
+            <input type="text" name="name" id="name" placeholder="Name" required>
+        </div>
+        <!-- here we will take user birth_date -->
+        <div class="block">
+            <p class="title">Date</p>
+            <input type="text" name="birthDate" id="date" placeholder="dd" required>
+        </div>
+         <!-- here we will take user birth_month -->
+        <div class="block">
+            <p class="title">Month</p>
+            <input type="text" name="month" id="month" placeholder="mm" minlength="1" maxlength="2" required >
+        </div>
+        <!-- here we will take user birth_year -->
+        <div class="block">
+            <p class="title">Year</p>
+            <input type="text" name="year" id="year" minlength="4" maxlength="4"  placeholder="yyyy" required>
+        </div>
+        <!-- here we will make submit button -->
+        <div class="base">
+            <input type="submit" name="submit" required value="Submit" onclick="Age()"/>
+        </div>
+        <!-- here we display result -->
+        <div class="age" id="Age">
+        </div>
+    </div>
+    <!-- now we are going to use javascript -->
+   <script type="text/javascript">
+    const Age =() => {
+        //users date of birth 
+        let name = document.getElementById('name').value;           //user enter thier name
+        let d1 = parseInt(document.getElementById('date').value);   //user enter thier birthdate
+        let m1 = parseInt(document.getElementById('month').value); //user enter thier monthdate
+        let y1 = parseInt(document.getElementById('year').value);  //user enter thier yeardate
+
+        //now printing all above dates here
+        console.log(d1);
+        console.log(m1);
+        console.log(y1);
+
+       //current date of birth of  users
+        let date = new Date();         //this is the syntax for getting new date of users
+        let d2 = date.getDate();       // this is the current date of users
+        let m2 = 1 + date.getMonth();  //this is the current month of user
+        let y2 = date.getFullYear();   //this is the current year of users
+
+        //we are going to use conditionals statements using current time
+        if(d1>d2){                  //we comparing if our birthdate is grater than current date
+            d2 = d2 + month[m2-1];  
+            m2 = m2-1;
+        }
+        if(m1>m2){
+            m2 = m2+12;
+            y2 = y2-1;
+        }
+        //here we have to show how many days in one month
+        let month = [31,28,31,30,31,30,31,31,30,31,30,31];
+        
+        //here we want final result
+        let d = d2-d1;      //we subtracting current date (d2) to birthdate (d1)
+        let m = m2-m1;      //we subtracting current month(m2) to birthmonth(m1)
+        let y = y2-y1;      //we subtracting current year(y2) to birthyear(y1)
+         console.log(y);    //now we printin year here
+         
+         //here we printing result using Dom methods
+        document.getElementById("Age").innerHTML = "Hi! " +name+ " your age is " +y+ " years " +m+ " months " +d+ " days";
+         
+      }
+   </script>
+</body>
+</html>
